@@ -1,0 +1,12 @@
+{
+  "name": "steam-icons-app",
+  "version": "1.0.0",
+  "description": "Secure Steam Web API library exporter with dark UI, localized views, sortable game tables, and ZIP downloads.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node scripts/update-build.js",
+    "encrypt-key": "node scripts/encrypt-steam-key.js"
+  }
+}
