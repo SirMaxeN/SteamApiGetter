@@ -90,7 +90,7 @@ In your hosting panel, create a Node.js app for the project directory and set:
 PORT=<port provided by hosting>
 NODE_ENV=production
 STEAM_WEB_API_KEY=your_steam_key
-BASE_PATH=/games/steam-api-getter
+BASE_PATH=/web_apps/steam-api-getter
 DEFAULT_PROFILE_LABEL=SirMaxeN
 DEFAULT_STEAMID64=76561198040078356
 ```
@@ -107,7 +107,7 @@ If it asks for a start command, use:
 npm start
 ```
 
-Point `/games/steam-api-getter` to the Node.js app according to your hosting panel. The app serves both frontend files and API endpoints from the same origin.
+Point `/web_apps/steam-api-getter` to the Node.js app according to your hosting panel. The app serves both frontend files and API endpoints from the same origin.
 
 ## Build Upload Package
 
@@ -120,10 +120,10 @@ npm.cmd run build
 Upload the contents of `build/` to:
 
 ```text
-domains/kstrzebicka.pl/public_html/games/steam-api-getter
+web_apps/steam-api-getter/app
 ```
 
-Do not upload `.env`, `.git`, `node_modules`, or local export folders.
+Do not upload `.env`, `.git`, `node_modules`, or local export folders. Production credentials are stored in the private app directory as `.env` with permissions `600`; the application loads them on startup.
 
 ## Security Defaults
 
@@ -185,3 +185,9 @@ node --inspect server.js
 ```
 
 Then open `chrome://inspect` in Chrome or Edge.
+
+## Production layout
+
+Public URL: https://komars.eu/web_apps/steam-api-getter/
+
+The Node.js application lives in `~/web_apps/steam-api-getter/app`, outside the domain document root. CloudLinux maps the URL to this application. Only files in `public/` are served by the application; keep credentials, logs and backups private. The old kstrzebicka.pl URL redirects to the new URL.
